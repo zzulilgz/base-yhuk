@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/zzulilgz/yhuk-config-repo.git
+          username:
+          password:
+
+
+
