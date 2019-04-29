@@ -9,5 +9,7 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://localhost:${server.port}/eureka/
-
+  server:
+    eviction-interval-timer-in-ms: 2000
+    enable-self-preservation: false #关闭保护模式
 spring.cloud.config.discovery.enabled: true

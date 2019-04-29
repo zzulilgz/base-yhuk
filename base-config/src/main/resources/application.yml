@@ -1,11 +1,23 @@
 server:
   port: 8888
-
+#注册中心配置
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
-
+  instance:
+    appname: base-config
+    hostname: localhost
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 10
+#MQ配置
+spring:
+  rabbitmq:
+    addresses: amqp://123.207.255.184:5672
+    username: admin
+    password: yhuk123
 management:
   security:
     enabled: false #启用外网调用
+
