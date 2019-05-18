@@ -1,0 +1,13 @@
+package com.yhuk.base.zuul;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BaseZuulApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(BaseZuulApplication.class, args);
+    }
+
+}
