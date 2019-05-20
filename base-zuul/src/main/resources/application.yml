@@ -9,6 +9,16 @@ zuul:
       serviceId: account-restapi
       strip-prefix: false  #保留前缀
   # retryable: true #开启重试机制配合ribbon
+security:
+  oauth2:
+    client:
+      access-token-uri: #令牌端点
+      user-authorization-uri: #授权端点
+      client-id: zuul-server
+      client-secret: secret #客户端秘钥
+    resource:
+      jwt:
+        key-value: base-yhuk #对称加密，默认算法HS256
 management:
   endpoints:
     web:
