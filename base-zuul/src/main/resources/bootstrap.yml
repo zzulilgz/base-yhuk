@@ -17,7 +17,7 @@ eureka:
     service-url:
       defaultZone: http://123.207.255.184:8761/eureka/
   instance:
-    appname: account-sso
+    appname: zuul-server
     hostname: localhost
     lease-renewal-interval-in-seconds: 10
     lease-expiration-duration-in-seconds: 10
