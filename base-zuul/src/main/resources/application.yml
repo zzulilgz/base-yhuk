@@ -1,2 +1,16 @@
 server:
-  port:
+  port: 8080
+  servlet:
+    context-path: /api
+zuul:
+  routes:
+    account-restapi:   #如果不配置默认根据服务名称映射
+      path: /account/**
+      serviceId: account-restapi
+      strip-prefix: false  #保留前缀
+  # retryable: true #开启重试机制配合ribbon
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["*"]  #开启所有的端点监控，默认只开放info,health

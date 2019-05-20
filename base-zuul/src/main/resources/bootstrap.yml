@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: zuul-server
+  profiles:
+    active: ${spring.profile.active:dev}
+  cloud:
+    config:
+      uri: http://123.207.255.184:8888
+  rabbitmq:
+    addresses: amqp://123.207.255.184:5672
+    username: admin
+    password: yhuk123
+
+#注册中心管理
+eureka:
+  client:
+    service-url:
+      defaultZone: http://123.207.255.184:8761/eureka/
+  instance:
+    appname: account-sso
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 10
+    ip-address: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
