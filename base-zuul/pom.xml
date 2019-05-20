@@ -6,7 +6,6 @@
         <groupId>com.yhuk</groupId>
         <artifactId>base-yhuk</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yhuk.base.zuul</groupId>
     <artifactId>base-zuul</artifactId>
