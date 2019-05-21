@@ -45,7 +45,6 @@ public class MyUserDetailsService implements UserDetailsService {
         userRolesBo.setRoles(roleBos);
         usersMap.put("admin",userRolesBo);
 
-
     }
     @Override
     public UserDetails loadUserByUsername(String loginName) throws UsernameNotFoundException {

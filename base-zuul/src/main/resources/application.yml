@@ -8,6 +8,10 @@ zuul:
       path: /account/**
       serviceId: account-restapi
       strip-prefix: false  #保留前缀
+    resource-server:   #如果不配置默认根据服务名称映射
+      path: /resource/**
+      serviceId: resource-server
+      strip-prefix: false  #保留前缀
   # retryable: true #开启重试机制配合ribbon
 security:
   oauth2:
