@@ -29,8 +29,8 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
                 .inMemory()
                 .withClient("zuul-server")
                 .secret("secret")
-                .scopes("WRIGHT","read").autoApprove(true)
-                .authorities("WRIGHT_READ","WRIGHT_WRITE")
+//                .scopes("WRIGHT","read").autoApprove(true)
+//                .authorities("WRIGHT_READ","WRIGHT_WRITE")
                 .authorizedGrantTypes("implict","refresh_token","password","authorization_code");
 
     }

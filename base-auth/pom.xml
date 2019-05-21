@@ -13,8 +13,6 @@
     <name>base-auth</name>
     <description>鉴权和认证服务</description>
 
-
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -23,6 +21,12 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yhuk.account</groupId>
+            <artifactId>account-client</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

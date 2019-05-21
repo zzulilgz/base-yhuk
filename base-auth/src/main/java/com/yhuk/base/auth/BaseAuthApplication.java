@@ -1,5 +1,7 @@
 package com.yhuk.base.auth;
 
+import com.yhuk.base.auth.service.MyUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +21,9 @@ public class BaseAuthApplication extends WebSecurityConfigurerAdapter {
         SpringApplication.run(BaseAuthApplication.class, args);
     }
 
+    @Autowired
+    private MyUserDetailsService myUserDetailsService;
+
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER) //指定名称
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
@@ -27,11 +32,12 @@ public class BaseAuthApplication extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-       auth.inMemoryAuthentication()
-               .withUser("guest").password("guest")
-               .authorities("WRIGHT_READ")
-               .and()
-               .withUser("admin").password("admin").authorities("WRIGHT_READ","WRIGHT_WRITE");
+        auth.userDetailsService(myUserDetailsService);
+//       auth.inMemoryAuthentication()
+//               .withUser("guest").password("guest")
+//               .authorities("WRIGHT_READ")
+//               .and()
+//               .withUser("admin").password("admin").authorities("WRIGHT_READ","WRIGHT_WRITE");
     }
     @Bean
     public static NoOpPasswordEncoder passwordEncoder(){

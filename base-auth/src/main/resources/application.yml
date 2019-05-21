@@ -2,7 +2,9 @@ spring:
   application:
     name: auth-server
 server:
-  port: 6666
+  port: 9999 #不能是6666~6669端口不建议使用
+  servlet:
+    context-path: /uaa
 eureka:
   client:
     service-url:
