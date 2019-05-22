@@ -39,12 +39,26 @@ public class MyUserDetailsService implements UserDetailsService {
         List<RoleBo> roleBos = new ArrayList<>();
         RoleBo roleBo = new RoleBo();
         List<ResourceBo> resourceList = new ArrayList<>();
-        resourceList.add(new ResourceBo("test1","/resource/test1"));
+        resourceList.add(new ResourceBo("resource_1","read"));
+        resourceList.add(new ResourceBo("resource_2","write"));
         roleBo.setResources(resourceList);
         roleBos.add(roleBo);
         userRolesBo.setRoles(roleBos);
         usersMap.put("admin",userRolesBo);
 
+
+        UserRolesBo userRolesBo2 = new UserRolesBo();
+        userRolesBo2.setLoginName("test");
+        userRolesBo2.setPassword("test");
+        List<RoleBo> roleBos2 = new ArrayList<>();
+        RoleBo roleBo2 = new RoleBo();
+        List<ResourceBo> resourceList2 = new ArrayList<>();
+        resourceList2.add(new ResourceBo("resource_1","read"));
+        roleBo2.setResources(resourceList2);
+        roleBos2.add(roleBo2);
+        userRolesBo2.setRoles(roleBos2);
+
+        usersMap.put("test",userRolesBo2);
     }
     @Override
     public UserDetails loadUserByUsername(String loginName) throws UsernameNotFoundException {
