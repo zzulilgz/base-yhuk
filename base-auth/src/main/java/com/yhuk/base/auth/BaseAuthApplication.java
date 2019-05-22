@@ -24,7 +24,7 @@ public class BaseAuthApplication extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
-    @Bean(name = BeanIds.AUTHENTICATION_MANAGER) //指定名称
+    @Bean(name = BeanIds.AUTHENTICATION_MANAGER) //指定实例名称
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
@@ -32,6 +32,7 @@ public class BaseAuthApplication extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //动态配置
         auth.userDetailsService(myUserDetailsService);
 //       auth.inMemoryAuthentication()
 //               .withUser("guest").password("guest")

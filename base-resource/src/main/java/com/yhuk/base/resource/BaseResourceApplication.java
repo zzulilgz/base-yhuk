@@ -43,14 +43,11 @@ public class BaseResourceApplication extends ResourceServerConfigurerAdapter {
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.resourceId("zuul-server").tokenStore(jwtTokenStore());
     }
-
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/**").hasAuthority("write");
-
     }
-
     @Bean
     public TokenStore jwtTokenStore(){
         return new JwtTokenStore(jwtTokenConverter());

@@ -1,13 +1,16 @@
 package com.yhuk.base.auth.service;
 
+import com.yhuk.account.client.service.UserClient;
 import com.yhuk.account.object.response.ResourceBo;
 import com.yhuk.account.object.response.RoleBo;
 import com.yhuk.account.object.response.UserRolesBo;
 import com.yhuk.account.object.utils.JsonUtils;
 import com.yhuk.account.object.utils.ResponseUtils;
+import com.yhuk.account.object.utils.ResponseUtils.Response;
 import com.yhuk.base.auth.model.MyUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,6 +31,9 @@ import java.util.Map;
 @Component
 public class MyUserDetailsService implements UserDetailsService {
     public static final Logger logger = LoggerFactory.getLogger(MyUserDetailsService.class);
+
+    @Autowired
+    private UserClient userClient;
 
     public static Map<String,UserRolesBo> usersMap;
 
@@ -63,8 +69,10 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String loginName) throws UsernameNotFoundException {
         logger.info("当前登录人:{}",loginName);
+        Response<UserRolesBo> userRolesBoRes = userClient.findByLogin(loginName);
+        UserRolesBo userRolesBo = userRolesBoRes.getData();
 
-        UserRolesBo userRolesBo = usersMap.get(loginName);
+       // UserRolesBo userRolesBo = usersMap.get(loginName);
 
         if (userRolesBo == null) {
             throw new UsernameNotFoundException("LoginName " + loginName + " not found");
