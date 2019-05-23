@@ -5,7 +5,6 @@ import com.yhuk.account.object.response.ResourceBo;
 import com.yhuk.account.object.response.RoleBo;
 import com.yhuk.account.object.response.UserRolesBo;
 import com.yhuk.account.object.utils.JsonUtils;
-import com.yhuk.account.object.utils.ResponseUtils;
 import com.yhuk.account.object.utils.ResponseUtils.Response;
 import com.yhuk.base.auth.model.MyUserDetails;
 import org.slf4j.Logger;
@@ -66,6 +65,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
         usersMap.put("test",userRolesBo2);
     }
+
     @Override
     public UserDetails loadUserByUsername(String loginName) throws UsernameNotFoundException {
         logger.info("当前登录人:{}",loginName);

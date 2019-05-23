@@ -13,6 +13,11 @@ zuul:
       serviceId: resource-server
       strip-prefix: false  #保留前缀
   # retryable: true #开启重试机制配合ribbon
+
+ribbon: #超时设置
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
 security:
   oauth2:
     client:

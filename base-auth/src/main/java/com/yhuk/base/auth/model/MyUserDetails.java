@@ -3,9 +3,11 @@ package com.yhuk.base.auth.model;
 import com.yhuk.account.object.response.ResourceBo;
 import com.yhuk.account.object.response.RoleBo;
 import com.yhuk.account.object.response.UserRolesBo;
+import org.apache.commons.codec.digest.Md5Crypt;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -36,6 +38,7 @@ public class MyUserDetails extends UserRolesBo implements UserDetails {
         return list;
     }
 
+
     @Override
     public String getUsername() {
         return this.getLoginName();
@@ -60,4 +63,12 @@ public class MyUserDetails extends UserRolesBo implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public static void main(String[] args) {
+        //进行加密
+        BCryptPasswordEncoder encoder =new BCryptPasswordEncoder();
+        System.out.println(encoder.encode("123456"));
+
+    }
+
 }

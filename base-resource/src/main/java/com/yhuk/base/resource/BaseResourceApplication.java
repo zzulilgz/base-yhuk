@@ -28,6 +28,11 @@ public class BaseResourceApplication extends ResourceServerConfigurerAdapter {
         SpringApplication.run(BaseResourceApplication.class, args);
     }
 
+    @RequestMapping("/public")
+    public String publicMethod(){
+
+        return "this a public method";
+    }
     @RequestMapping("/test")
     public String test(HttpServletRequest request){
         System.out.println("------------header------------");
@@ -46,7 +51,9 @@ public class BaseResourceApplication extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/**").hasAuthority("write");
+                .authorizeRequests().
+                antMatchers("/test")
+                .hasAuthority("write");
     }
     @Bean
     public TokenStore jwtTokenStore(){
