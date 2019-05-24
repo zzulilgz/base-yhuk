@@ -40,9 +40,6 @@ public class BaseAuthApplication extends WebSecurityConfigurerAdapter {
 //               .and()
 //               .withUser("admin").password("admin").authorities("WRIGHT_READ","WRIGHT_WRITE");
     }
-    @Bean
-    public static NoOpPasswordEncoder passwordEncoder(){
-        return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-    }
+
 
 }

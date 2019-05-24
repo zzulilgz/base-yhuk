@@ -1,7 +1,7 @@
 server:
   port: 8080
   servlet:
-    context-path: /
+    context-path: /api
 zuul:
   routes:
     account-restapi:   #如果不配置默认根据服务名称映射

@@ -30,7 +30,6 @@ public class BaseResourceApplication extends ResourceServerConfigurerAdapter {
 
     @RequestMapping("/public")
     public String publicMethod(){
-
         return "this a public method";
     }
     @RequestMapping("/test")

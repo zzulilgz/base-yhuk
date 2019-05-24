@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: auth-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://123.207.255.184:8761/eureka/
+  instance:
+    appname: auth-server
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 10
+    ip-address: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
