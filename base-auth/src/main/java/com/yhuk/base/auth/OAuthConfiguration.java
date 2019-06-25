@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
@@ -31,7 +33,8 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     AuthenticationManager authenticationManager;
-
+    @Autowired
+    PasswordEncoder passwordEncoder;
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource(){
@@ -62,6 +65,14 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
                 .authenticationManager(authenticationManager);
     }
 
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        security.tokenKeyAccess("permitAll()");
+        security.checkTokenAccess("permitAll()");
+        security.allowFormAuthenticationForClients();
+        security.passwordEncoder(passwordEncoder);
+    }
+
     @Bean
     public TokenStore jwtTokenStore(){
         return new JwtTokenStore(jwtTokenConverter());
@@ -72,4 +83,5 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
         jwtAccessTokenConverter.setSigningKey("base-yhuk");
         return jwtAccessTokenConverter;
     }
+
 }

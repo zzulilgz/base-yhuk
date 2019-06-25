@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +50,6 @@ public class MyUserDetailsService implements UserDetailsService {
         roleBos.add(roleBo);
         userRolesBo.setRoles(roleBos);
         usersMap.put("admin",userRolesBo);
-
 
         UserRolesBo userRolesBo2 = new UserRolesBo();
         userRolesBo2.setLoginName("test");

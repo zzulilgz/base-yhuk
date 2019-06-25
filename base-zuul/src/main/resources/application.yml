@@ -1,12 +1,16 @@
 server:
   port: 8080
   servlet:
-    context-path: /api
+    context-path: /
 zuul:
   routes:
     account-restapi:   #如果不配置默认根据服务名称映射
       path: /account/**
       serviceId: account-restapi
+      strip-prefix: false  #保留前缀
+    auth-server:   #如果不配置默认根据服务名称映射
+      path: /uaa/**
+      serviceId: auth-server
       strip-prefix: false  #保留前缀
     resource-server:   #如果不配置默认根据服务名称映射
       path: /resource/**
@@ -25,6 +29,9 @@ security:
       user-authorization-uri: http://localhost:9999/uaa/oauth/authorize
       client-id: zuul-server
       client-secret: secret #客户端秘钥
+      grant-type: password
+      use-current-uri: false
+
     resource:
       jwt:
         key-value: base-yhuk #对称加密，默认算法HS256

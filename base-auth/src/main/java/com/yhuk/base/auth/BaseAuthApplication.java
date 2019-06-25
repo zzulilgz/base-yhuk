@@ -9,9 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @EnableFeignClients(basePackages = {"com.yhuk.account.client.service"})
@@ -29,11 +31,14 @@ public class BaseAuthApplication extends WebSecurityConfigurerAdapter {
     protected AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //动态配置,使用BCrypt加密算法
-        auth.userDetailsService(myUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
 //       auth.inMemoryAuthentication()
 //               .withUser("guest").password("guest")
 //               .authorities("WRIGHT_READ")
@@ -41,5 +46,17 @@ public class BaseAuthApplication extends WebSecurityConfigurerAdapter {
 //               .withUser("admin").password("admin").authorities("WRIGHT_READ","WRIGHT_WRITE");
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+       http
+           .formLogin()
+           .disable()
+           .authorizeRequests()
+           .anyRequest()
+           .authenticated().antMatchers("/oauth/**")
+               .permitAll()
+           .and()
+           .csrf().disable();
+    }
 
 }

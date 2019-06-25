@@ -50,12 +50,11 @@ public class BaseZuulApplication extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**")
+        http.formLogin().disable()
                 .authorizeRequests()
-                .antMatchers( "/login**")
+                .antMatchers("/oauth/token")
                 .permitAll()
-                .antMatchers(settings.getPermitall().split(","))
-                .permitAll().anyRequest().authenticated();
+                .anyRequest().authenticated();
     }
     @Bean
     public MyFilterSecurityInterceptor customFilter() throws Exception{

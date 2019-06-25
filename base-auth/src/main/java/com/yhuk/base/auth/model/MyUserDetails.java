@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -67,7 +68,10 @@ public class MyUserDetails extends UserRolesBo implements UserDetails {
     public static void main(String[] args) {
         //进行加密
         BCryptPasswordEncoder encoder =new BCryptPasswordEncoder();
-        System.out.println(encoder.encode("123456"));
+        String test = encoder.encode("123456");
+
+        System.out.println(test);
+        System.out.println(encoder.matches("123456",test));
 
     }
 
