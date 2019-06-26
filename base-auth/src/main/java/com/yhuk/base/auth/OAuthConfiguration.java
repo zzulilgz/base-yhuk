@@ -84,4 +84,6 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
         return jwtAccessTokenConverter;
     }
 
+
+
 }

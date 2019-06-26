@@ -71,8 +71,6 @@ public class MyUserDetailsService implements UserDetailsService {
         Response<UserRolesBo> userRolesBoRes = userClient.findByLogin(loginName);
         UserRolesBo userRolesBo = userRolesBoRes.getData();
 
-       // UserRolesBo userRolesBo = usersMap.get(loginName);
-
         if (userRolesBo == null) {
             throw new UsernameNotFoundException("LoginName " + loginName + " not found");
         }

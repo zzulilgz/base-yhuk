@@ -52,11 +52,12 @@ public class BaseAuthApplication extends WebSecurityConfigurerAdapter {
            .formLogin()
            .disable()
            .authorizeRequests()
-           .anyRequest()
-           .authenticated().antMatchers("/oauth/**")
-               .permitAll()
+           .antMatchers("/oauth/**","/principal/login")
+           .permitAll()
+           .anyRequest().authenticated()
            .and()
-           .csrf().disable();
+           .csrf()
+           .disable();
     }
 
 }
