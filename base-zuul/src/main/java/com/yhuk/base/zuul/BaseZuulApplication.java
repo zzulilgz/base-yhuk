@@ -52,7 +52,7 @@ public class BaseZuulApplication extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().disable()
                 .authorizeRequests()
-                .antMatchers("/oauth/token")
+                .antMatchers("/principal/login")
                 .permitAll()
                 .anyRequest().authenticated();
     }

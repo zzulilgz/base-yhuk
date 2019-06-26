@@ -1,6 +1,6 @@
 package com.yhuk.base.auth.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
@@ -8,15 +8,14 @@ import java.security.Principal;
 /**
  * @Description TODO
  * @Author gaozhi.liu
- * @Date 2019/6/24 13:53
+ * @Date 2019/6/26 17:50
  * @Version 1.0
  **/
 @RestController
-@RequestMapping("/")
-public class HomeController {
+public class UserController {
 
-    @RequestMapping("/")
-    public String home(){
-        return "success";
+    @GetMapping("/user")
+    public Principal user(Principal user){
+        return user;
     }
 }

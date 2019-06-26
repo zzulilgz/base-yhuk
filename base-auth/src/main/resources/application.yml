@@ -9,3 +9,9 @@ spring:
     username: root
     password: aca1b7dd6d4ed58e320288fbb343240b
     driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 123.207.255.184
+    port: 6379
+    clientname: oauth-server
+    password: zzulilgz
+    database: 0

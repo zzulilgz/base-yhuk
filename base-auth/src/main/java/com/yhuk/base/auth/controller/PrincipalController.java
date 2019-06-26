@@ -14,10 +14,7 @@ import org.springframework.security.oauth2.provider.*;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.util.StringUtils;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Collection;
@@ -44,13 +41,10 @@ public class PrincipalController {
     @PostMapping("/login")
     public ResponseEntity<OAuth2AccessToken> login(@RequestBody Map<String,String> request) throws HttpRequestMethodNotSupportedException {
 
-
-
         request.put("grant_type","password");
 
         return tokenEndpoint.postAccessToken(getAuthentication(request), request);
     }
-
     private Authentication getAuthentication(Map<String,String> request){
         Authentication authentication = new Authentication() {
             @Override
