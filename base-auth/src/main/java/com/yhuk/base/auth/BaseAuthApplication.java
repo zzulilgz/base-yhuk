@@ -1,6 +1,7 @@
 package com.yhuk.base.auth;
 
 import com.yhuk.base.auth.service.MyUserDetailsService;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,11 +16,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 @EnableFeignClients(basePackages = {"com.yhuk.account.client.service"})
+@MapperScan(basePackages = {"com.yhuk.base.auth.dao"})
 public class BaseAuthApplication extends WebSecurityConfigurerAdapter {
 
     public static void main(String[] args) {

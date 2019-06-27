@@ -27,7 +27,6 @@ security:
     client:
       access-token-uri: http://localhost:9999/uaa/oauth/token
       user-authorization-uri: http://localhost:9999/uaa/oauth/authorize
-
       client-id: zuul-server
       client-secret: secret #客户端秘钥
       grant-type: password

@@ -5,7 +5,7 @@ server:
 
 spring:
   datasource:
-    jdbc-url: jdbc:mysql://123.207.255.184:3306/yhuk_oauth?useSSL=false&amp;characterEncoding=UTF-8
+    jdbc-url: jdbc:mysql://123.207.255.184:3306/yhuk_power?useSSL=false&amp;characterEncoding=UTF-8
     username: root
     password: aca1b7dd6d4ed58e320288fbb343240b
     driver-class-name: com.mysql.jdbc.Driver

@@ -31,10 +31,7 @@ public class MyUserDetails extends UserRolesBo implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<MyGrantedAuthority> list = new ArrayList<>();
         for (RoleBo role : this.getRoles()) {
-            List<ResourceBo> resources = role.getResources();
-            for (ResourceBo resource : resources) {
-                list.add(new MyGrantedAuthority(resource.getPath()));
-            }
+            list.add(new MyGrantedAuthority(role.getId().toString(),role.getName()));
         }
         return list;
     }

@@ -35,14 +35,12 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
     AuthenticationManager authenticationManager;
     @Autowired
     PasswordEncoder passwordEncoder;
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource(){
-        return DataSourceBuilder.create().build();
-    }
+
+    @Autowired
+    DataSource dataSource;
 
     public ClientDetailsService clientDetails(){
-        return new JdbcClientDetailsService(dataSource());
+        return new JdbcClientDetailsService(dataSource);
     }
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
