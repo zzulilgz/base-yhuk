@@ -16,6 +16,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -27,6 +29,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableOAuth2Sso
 @EnableConfigurationProperties(SecuritySettings.class)
 @EnableFeignClients(basePackages = {"com.yhuk.account.client"})
+@EnableScheduling
 public class BaseZuulApplication extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -79,7 +82,10 @@ public class BaseZuulApplication extends WebSecurityConfigurerAdapter {
         return new LoggerFilter();
     }
 
-
+    @Scheduled(cron = "0 0/1 * * * ?")
+    public void test(){
+        System.out.println("--------------test---------------------");
+    }
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //                 http
