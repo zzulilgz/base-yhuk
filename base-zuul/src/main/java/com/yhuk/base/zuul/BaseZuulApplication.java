@@ -82,10 +82,6 @@ public class BaseZuulApplication extends WebSecurityConfigurerAdapter {
         return new LoggerFilter();
     }
 
-    @Scheduled(cron = "0 0/1 * * * ?")
-    public void test(){
-        System.out.println("--------------test---------------------");
-    }
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //                 http
