@@ -1,7 +1,7 @@
 server:
-  port: 8080
+  port: 10000
   servlet:
-    context-path: /
+    context-path: /api
 zuul:
   routes:
     account-restapi:   #如果不配置默认根据服务名称映射
@@ -17,24 +17,12 @@ zuul:
       serviceId: resource-server
       strip-prefix: false  #保留前缀
   # retryable: true #开启重试机制配合ribbon
+  sensitive-headers: Cookie,Set-Cookie
 
 ribbon: #超时设置
   ReadTimeout: 60000
   ConnectTimeout: 60000
 
-security:
-  oauth2:
-    client:
-      access-token-uri: http://localhost:9999/uaa/oauth/token
-      user-authorization-uri: http://localhost:9999/uaa/oauth/authorize
-      client-id: zuul-server
-      client-secret: secret #客户端秘钥
-      grant-type: password
-      use-current-uri: false
-
-    resource:
-      jwt:
-        key-value: base-yhuk #对称加密，默认算法HS256
 management:
   endpoints:
     web:
