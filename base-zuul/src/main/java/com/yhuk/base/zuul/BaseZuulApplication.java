@@ -14,7 +14,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 public class BaseZuulApplication  {
 
-
     public static void main(String[] args) {
         SpringApplication.run(BaseZuulApplication.class, args);
     }
