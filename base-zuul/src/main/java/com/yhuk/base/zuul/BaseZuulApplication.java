@@ -1,10 +1,6 @@
 package com.yhuk.base.zuul;
 
 import com.yhuk.account.client.service.RoleClient;
-import com.yhuk.account.client.service.UserClient;
-import com.yhuk.base.zuul.config.MyAccessDecisionManager;
-import com.yhuk.base.zuul.config.MyFilterSecurityInterceptor;
-import com.yhuk.base.zuul.config.MySecurityMetadataSource;
 import com.yhuk.base.zuul.config.SecuritySettings;
 import com.yhuk.base.zuul.filters.LoggerFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +13,6 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -37,8 +32,6 @@ public class BaseZuulApplication extends WebSecurityConfigurerAdapter {
     @Autowired
     SecuritySettings settings;
 
-    @Autowired
-    private RoleClient roleClient;
 
     public static void main(String[] args) {
         SpringApplication.run(BaseZuulApplication.class, args);
@@ -50,7 +43,6 @@ public class BaseZuulApplication extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin().disable()
@@ -59,24 +51,7 @@ public class BaseZuulApplication extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest().authenticated();
     }
-    @Bean
-    public MyFilterSecurityInterceptor customFilter() throws Exception{
-        MyFilterSecurityInterceptor customFilter = new MyFilterSecurityInterceptor();
-        customFilter.setSecurityMetadataSource(securityMetadataSource());
-        customFilter.setAccessDecisionManager(accessDecisionManager());
-        customFilter.setAuthenticationManager(authenticationManager);
-        return customFilter;
-    }
 
-    @Bean
-    public MyAccessDecisionManager accessDecisionManager() {
-        return new MyAccessDecisionManager();
-    }
-
-    @Bean
-    public MySecurityMetadataSource securityMetadataSource() {
-        return new MySecurityMetadataSource(roleClient);
-    }
     @Bean
     public LoggerFilter loggerFilter(){
         return new LoggerFilter();

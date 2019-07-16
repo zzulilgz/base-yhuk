@@ -30,8 +30,6 @@ public class MyUserDetailsService implements UserDetailsService {
     public static final Logger logger = LoggerFactory.getLogger(MyUserDetailsService.class);
 
     @Autowired
-    private UserClient userClient;
-    @Autowired
     private AccountUserDao accountUserDao;
 
     @Autowired

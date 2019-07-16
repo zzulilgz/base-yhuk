@@ -40,7 +40,7 @@ public class PrincipalController {
 
     @PostMapping("/login")
     public ResponseEntity<OAuth2AccessToken> login(@RequestBody Map<String,String> request) throws HttpRequestMethodNotSupportedException {
-
+        System.out.println("d----------------d");
         request.put("grant_type","password");
 
         return tokenEndpoint.postAccessToken(getAuthentication(request), request);
